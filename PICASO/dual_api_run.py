@@ -783,7 +783,7 @@ class OrthrusDualAPI():
                 df_annotation['predicted_api'] = p
 
                 # Determine the filename
-                filename = f"result_{epoch}.csv"
+                filename = "result_{}.csv".format(epoch)
                 file_path = os.path.join(output_dir, filename)
 
                 # Save the DataFrame to a CSV file
