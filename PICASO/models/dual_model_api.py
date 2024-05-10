@@ -60,13 +60,13 @@ class Seq2Seq(nn.Module):
                 config.hidden_size
             )
 
-        # wandb_config={
-        #     "beam_size": self.beam_size,
-        #     "max_length": self.max_length,
-        #     "l2_norm": self.l2_norm,
-        #     "config": self.config
-        # }
-        #wandb.init(project='3-inputs-annotation-so-title-so-api', config=wandb_config)
+        wandb_config={
+            "beam_size": self.beam_size,
+            "max_length": self.max_length,
+            "l2_norm": self.l2_norm,
+            "config": self.config
+        }
+        wandb.init(project='3-inputs-annotation-so-title-so-api', config=wandb_config)
 
     def _tie_or_clone_weights(self, first_module, second_module):
         """ Tie or clone module weights depending of weither we are using TorchScript or not
@@ -405,7 +405,7 @@ class OrthrusDualAPI():
         logging.info("  Batch size = {}".format(train_batch_size))
         logging.info("  Num epoch = {}".format(num_train_epochs))
 
-        #wandb.watch(self.model, log_freq=100)
+        wandb.watch(self.model, log_freq=100)
         
         self.model.train()
         dev_dataset = {}
@@ -444,7 +444,7 @@ class OrthrusDualAPI():
                     scheduler.step()
                     global_step += 1
 
-                #wandb.log({"loss": loss})
+                wandb.log({"loss": loss})
                     
             if do_eval==True:
                 # Eval model with dev dataset
@@ -627,7 +627,7 @@ class OrthrusDualAPI():
                 logging.info("  {} = {} ".format("bleu", str(dev_bleu)))
                 logging.info("  " + "*" * 20)
 
-                #wandb.log({'bleu': dev_bleu})
+                wandb.log({'bleu': dev_bleu})
                 
                 if dev_bleu > best_bleu:
                     logging.info("  Best bleu:%s", dev_bleu)
