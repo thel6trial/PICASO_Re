@@ -1,7 +1,6 @@
 # from models.dual_model_api import OrthrusDualAPI
 # from utils import set_logger
 from datetime import datetime
-import pytz
 import logging
 import argparse
 import os
@@ -927,7 +926,7 @@ if __name__ == '__main__':
     
     args = parser.parse_args()
     os.makedirs('./log', exist_ok=True)
-    set_logger('./log/dual_{}.log'.format(datetime.now(pytz.timezone('Asia/Singapore'))))
+    set_logger('./log/dual_{}.log'.format(datetime.now)))
     logging.info(args)
     logging.info('Training Dual Model - Annotation + SO Title + SO API')
     
